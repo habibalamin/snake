@@ -6,7 +6,7 @@ import System.IO (stdin
                 , hSetEcho
                 , hSetBuffering
                 , BufferMode(..))
-import Data.Maybe (fromJust)
+import Data.Maybe (fromMaybe)
 
 import qualified System.Console.Terminal.Size as T
 
@@ -18,4 +18,4 @@ catchInput action = (,) <$> hGetEcho stdin <*> hGetBuffering stdin >>=
 getTerminalWidthHeight :: Integral a => IO (a, a)
 getTerminalWidthHeight = maybeWindowToWidthHeight <$> T.size where
     maybeWindowToWidthHeight maybeWindow = (T.width window, T.height window) where
-        window = fromJust maybeWindow
+        window = fromMaybe T.Window { T.width = 0, T.height = 0 } maybeWindow
