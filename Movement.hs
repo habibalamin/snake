@@ -36,3 +36,10 @@ getNextMove = mkMove <$> keys where
             return firstChar
         flushInput caughtChars = hReady stdin >>=
             \ready -> if ready then getChar >> flushInput caughtChars else return caughtChars
+
+indexToCoords :: Integral a => a -> a -> Coords
+indexToCoords width index = tupleToCoords $ swap $ index `divMod` width where
+    swap (x,y) = (y,x)
+
+tupleToCoords :: Integral a => (a, a) -> Coords
+tupleToCoords (x,y) = Coords (fromIntegral x) (fromIntegral y)
