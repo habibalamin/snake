@@ -6,6 +6,12 @@ import Control.Monad (replicateM)
 
 data Move = Up | Down | Left | Right | Noop deriving Show
 
+data Direction = North | East | South | West deriving Show
+data Coords = Coords Integer Integer
+
+instance Show Coords where
+    show (Coords x y) = "(x: " ++ show x ++ ", y: " ++ show y ++ ")"
+
 mkMove :: String -> Move
 mkMove "\ESC[A" = Up
 mkMove "\ESC[B" = Down

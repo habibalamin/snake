@@ -1,13 +1,11 @@
 module Snake where
 
-data Coords = Coords Integer Integer
+import Movement
 
-instance Show Coords where
-    show (Coords x y) = "(x: " ++ show x ++ ", y: " ++ show y ++ ")"
-
-data Snake = Snake { getCoords :: [Coords] }
+data Snake = Snake { getDirection :: Direction
+                   , getCoords :: [Coords] }
 
 instance Show Snake where
-    show (Snake []) = "Snake []"
-    show (Snake coords) = "Snake [" ++ unwords (map showSnakeCoord coords) ++ "]" where
+    show (Snake direction []) = "Snake " ++ show direction ++ " []"
+    show (Snake direction coords) = "Snake " ++ show direction ++ " [" ++ unwords (map showSnakeCoord coords) ++ "]" where
         showSnakeCoord (Coords x y) = "(" ++ show x ++ " " ++ show y ++ ")"
