@@ -12,6 +12,10 @@ data Coords = Coords Integer Integer deriving Eq
 instance Show Coords where
     show (Coords x y) = "(x: " ++ show x ++ ", y: " ++ show y ++ ")"
 
+instance Ord Coords where
+    (Coords x y) `compare` (Coords a b) = let yAxisOrdering = y `compare` b
+        in if yAxisOrdering == EQ then x `compare` a else yAxisOrdering
+
 mkMove :: String -> Move
 mkMove "\ESC[A" = Up
 mkMove "\ESC[B" = Down
