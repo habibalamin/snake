@@ -7,7 +7,7 @@ import Control.Monad (replicateM)
 data Move = Up | Down | Left | Right | Noop deriving (Show, Eq, Enum)
 
 data Direction = North | East | South | West deriving (Show, Eq, Enum)
-data Coords = Coords Integer Integer
+data Coords = Coords Integer Integer deriving Eq
 
 instance Show Coords where
     show (Coords x y) = "(x: " ++ show x ++ ", y: " ++ show y ++ ")"
