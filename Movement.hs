@@ -4,9 +4,9 @@ import System.IO (hReady, stdin)
 import Control.Concurrent (threadDelay)
 import Control.Monad (replicateM)
 
-data Move = Up | Down | Left | Right | Noop deriving Show
+data Move = Up | Down | Left | Right | Noop deriving (Show, Eq, Enum)
 
-data Direction = North | East | South | West deriving Show
+data Direction = North | East | South | West deriving (Show, Eq, Enum)
 data Coords = Coords Integer Integer
 
 instance Show Coords where
