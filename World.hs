@@ -60,11 +60,11 @@ updateWorld move world@World { worldWidth = width
             newDirection Down           d = if d == North then d else South
             newDirection Movement.Left  d = if d == East then d else West
             newDirection Movement.Right d = if d == West then d else East
-            newCoords m w h d coords = let newHeadCoords = updateHead m w h d (head coords) in
+            newCoords m w h d coords = let newHeadCoords = updateHead w h d (head coords) in
                 newHeadCoords : updateTail newHeadCoords coords where
                     updateTail nhc cs = if length cs == 1 then []
                         else if nhc == head cs then tail cs else init cs
-                    updateHead Noop w h d head = progressHead w h d head where
+                    updateHead w h d head = progressHead w h d head where
                         progressHead w h d head = if outOfBounds w h $ newHead d head
                             then head
                             else newHead d head where
@@ -73,4 +73,3 @@ updateWorld move world@World { worldWidth = width
                             newHead East  (Coords x y) = Coords (x + 1) y
                             newHead South (Coords x y) = Coords x (y - 1)
                             newHead West  (Coords x y) = Coords (x - 1) y
-                    updateHead _    w h d head = head
