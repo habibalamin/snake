@@ -1,9 +1,11 @@
 module Main where
 
 import Terminal
+import World
+import Movement
 
 main :: IO ()
-main = catchInput snake
+main = catchInput $ randomWorld >>= snake
 
-snake :: IO ()
-snake = snake
+snake :: World -> IO ()
+snake world = print world >> getNextMove >>= return . flip updateWorld world >>= snake
