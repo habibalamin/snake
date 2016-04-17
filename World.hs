@@ -68,7 +68,10 @@ updateWorld move world@World { worldWidth = width
                         progressHead w h d head = if outOfBounds w h $ newHead d head
                             then head
                             else newHead d head where
-                            outOfBounds w h head = head > (indexToCoords w $ (w * h) - 1)
+                            outOfBounds w h (Coords headX headY) = headX > (w - 1) ||
+                                                                   headY > (h - 1) ||
+                                                                   headX < 0 ||
+                                                                   headY < 0
                             newHead North (Coords x y) = Coords x (y + 1)
                             newHead East  (Coords x y) = Coords (x + 1) y
                             newHead South (Coords x y) = Coords x (y - 1)
