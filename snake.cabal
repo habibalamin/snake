@@ -18,7 +18,8 @@ executable snake
   main-is:             Main.hs
   build-depends:       base >=4.8 && <4.9,
                        terminal-size >=0.3.2.1 && <0.3.3,
-                       split >=0.2.3 && <0.2.4
+                       split >=0.2.3 && <0.2.4,
+                       random >=1.1 && <1.1.1
   other-modules:       Terminal,
                        World,
                        Snake,
