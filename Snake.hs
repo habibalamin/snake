@@ -3,7 +3,7 @@ module Snake where
 import Movement
 
 data Snake = Snake { getDirection :: Direction
-                   , getCoords :: [Coords] }
+                   , getCoords :: [Coords] } deriving Eq
 
 instance Show Snake where
     show (Snake direction []) = "Snake " ++ show direction ++ " []"
