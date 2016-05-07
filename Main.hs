@@ -18,7 +18,9 @@ snake world = if gameOver world
         getNextMove >>= updateWorldIO world >>=
         clearScreenWorldPassthru >>= snake where
             printWorld = putStr . show
-            updateWorldIO world = return . flip updateWorld world
+            updateWorldIO world move = updatePelletCoords world >>=
+                \coords -> return $ updateWorld move coords world
+            changeMoveArgumentToLast fn m p w = fn p w m
             clearScreenWorldPassthru world = clearScreen world >> return world where
                 -- We add 1 to the height to account for the top border. We
                 -- are already on the same line as the bottom border (as we
